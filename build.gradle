@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.mysite'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    //서버 재시작 없이 클랙스 변경 내용 적용
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    //H2 데이터베이스 (개발 후 MySql로 변경 예정)
+    runtimeOnly 'com.h2database:h2'
+    //JPA 환경설정(DB 저장 및 조회)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //타임리프
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
